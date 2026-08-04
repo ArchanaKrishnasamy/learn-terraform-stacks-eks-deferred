@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 store "varset" "aws_credentials" {
-  name       = "aws"
+  name     = "aws"
   category = "env"
 }
 
