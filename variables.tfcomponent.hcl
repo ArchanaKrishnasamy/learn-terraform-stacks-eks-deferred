@@ -13,9 +13,6 @@ variable "region" {
   type = string
 }
 
-variable "role_arn" {
-  type = string
-}
 
 variable "aws_access_key_id" {
   type      = string
