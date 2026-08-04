@@ -9,7 +9,7 @@ store "varset" "aws_credentials" {
 deployment "development" {
   inputs = {
     cluster_name          = "stacks-demo"
-    kubernetes_version    = "1.30"
+    kubernetes_version    = "1.36"
     region                = "us-east-2"
     aws_access_key_id     = store.varset.aws_credentials.AWS_ACCESS_KEY_ID
     aws_secret_access_key = store.varset.aws_credentials.AWS_SECRET_ACCESS_KEY
