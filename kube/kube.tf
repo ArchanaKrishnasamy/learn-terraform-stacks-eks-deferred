@@ -17,9 +17,12 @@ resource "kubernetes_namespace_v1" "demo_ns" {
 }
 
 resource "kubernetes_manifest" "demo_workspace" {
+  depends_on = [
+    kubernetes_manifest.crd_workspaces
+  ]
   manifest = {
     apiVersion = "app.terraform.io/v1alpha2"
-    kind       = kubernetes_manifest.crd_workspaces.object.spec.names.kind
+    kind       = Workspace
     metadata = {
       name      = "deferred-demo"
       namespace = kubernetes_namespace_v1.demo_ns.id
