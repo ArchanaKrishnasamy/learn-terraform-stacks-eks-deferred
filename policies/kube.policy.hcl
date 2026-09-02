@@ -13,11 +13,6 @@ policy {
   
 }
 
-input "enforcement_level" {
-  type        = string
-  description = "The enforcement level for the policy. Can be 'advisory' or 'mandatory'."
-  default     = "advisory"
-}
 resource_policy "kubernetes_namespace_v1" "require_namespace_name" {
   enforcement_level = input.enforcement_level
   locals {
