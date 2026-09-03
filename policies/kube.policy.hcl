@@ -68,7 +68,7 @@ module_policy "./kube" "kube_source_is_local" {
 resource_policy "kubernetes_manifest" "require_manifest_namespace" {
   enforcement_level = input.enforcement_level
   locals {
-    manifest_namespace_ok = attrs.manifest.metadata[0].namespace == "demo-ns"
+    manifest_namespace_ok = attrs.manifest.metadata.namespace == "demo-ns"
   }
 
   enforce {
