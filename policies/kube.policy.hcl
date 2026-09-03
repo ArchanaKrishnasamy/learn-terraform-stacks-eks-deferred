@@ -21,8 +21,8 @@ resource_policy "kubernetes_namespace_v1" "require_namespace_name" {
 
   enforce {
     condition     = local.metadata_name_ok
-    info_message = "Require namespace name deferred-demo"
-    error_message = "kubernetes_namespace_v1 must set metadata.name to deferred-demo."
+    info_message = "Require namespace name ${attrs.metadata[0].name}"
+    error_message = "kubernetes_namespace_v1 must set metadata.name to ${attrs.metadata[0].name}."
   }
 }
 
@@ -65,7 +65,7 @@ module_policy "./kube" "kube_source_is_local" {
 # Policy 4 — resource_policy: kubernetes_manifest
 # Enforce manifest metadata has a non-empty namespace
 # ─────────────────────────────────────────────────────────────────────────────
-resource_policy "kubernetes_manifest" "require_manifest_namespace" {
+resource_policy "kubernetes_manifest" "require_manifest_name" {
   enforcement_level = input.enforcement_level
   locals {
     manifest_namespace_ok = attrs.manifest.metadata.name == "deferred-demo"
@@ -73,7 +73,7 @@ resource_policy "kubernetes_manifest" "require_manifest_namespace" {
 
   enforce {
     condition     = local.manifest_namespace_ok
-    info_message =  "info - kubernetes_manifest must set manifest.metadata.namespace to demo-ns."
-    error_message = "error -kubernetes_manifest must set manifest.metadata.namespace to demo-ns."
+    info_message =  "info - kubernetes_manifest must set manifest.metadata.namespace to ${attrs.manifest.metadata.name}."
+    error_message = "error -kubernetes_manifest must set manifest.metadata.namespace to ${attrs.manifest.metadata.name}."
   }
 }
