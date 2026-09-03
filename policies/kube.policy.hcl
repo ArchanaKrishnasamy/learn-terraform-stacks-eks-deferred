@@ -16,13 +16,13 @@ policy {
 resource_policy "kubernetes_namespace_v1" "require_namespace_name" {
   enforcement_level = input.enforcement_level
   locals {
-    metadata_name_ok = attrs.metadata.name == "demo-ns"
+    metadata_name_ok = attrs.metadata[0].name == "deferred-demo"
   }
 
   enforce {
     condition     = local.metadata_name_ok
-    info_message = "Require namespace name demo-ns"
-    error_message = "kubernetes_namespace_v1 must set metadata.name to demo-ns."
+    info_message = "Require namespace name deferred-demo"
+    error_message = "kubernetes_namespace_v1 must set metadata.name to deferred-demo."
   }
 }
 
@@ -68,7 +68,7 @@ module_policy "./kube" "kube_source_is_local" {
 resource_policy "kubernetes_manifest" "require_manifest_namespace" {
   enforcement_level = input.enforcement_level
   locals {
-    manifest_namespace_ok = attrs.manifest.metadata.namespace == "demo-ns"
+    manifest_namespace_ok = attrs.manifest[0].metadata[0].namespace == "demo-ns"
   }
 
   enforce {
