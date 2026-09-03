@@ -16,7 +16,7 @@ policy {
 resource_policy "kubernetes_namespace_v1" "require_namespace_name" {
   enforcement_level = input.enforcement_level
   locals {
-    metadata_name_ok = attrs.metadata[0].name == "deferred-demo"
+    metadata_name_ok = attrs.metadata[0].name == "demo-ns"
   }
 
   enforce {
