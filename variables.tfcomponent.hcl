@@ -13,23 +13,15 @@ variable "region" {
   type = string
 }
 
-
-variable "aws_access_key_id" {
-  type      = string
-  sensitive = true
-  ephemeral = true
+variable "identity_token" {
+  description = "Identity token for authentication."
+  type        = string
+  ephemeral   = true
 }
 
-variable "aws_secret_access_key" {
-  type      = string
-  sensitive = true
-  ephemeral = true
-}
-
-variable "aws_session_token" {
-  type      = string
-  sensitive = true
-  ephemeral = true
+variable "role_arn" {
+  description = "ARN of role associated with identity token."
+  type        = string
 }
 
 variable "default_tags" {
